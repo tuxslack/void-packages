@@ -1,0 +1,16 @@
+
+# Adiciona suporte a modem USB da Huawei
+
+# https://www.huawei.com/br/
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E156
+
+# lsusb 
+#
+# Bus 002 Device 004: ID 12d1:1003 Huawei Technologies Co., Ltd. E220 HSDPA Modem / E230/E270/E870 HSDPA/HSUPA Modem
+
+ATTR{idVendor}=="12d1", ATTR{idProduct}=="1003", RUN+="usb_modeswitch '/%k'"
+
+# ---------------------------------------------------------------------------------------

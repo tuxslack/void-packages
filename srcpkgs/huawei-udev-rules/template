@@ -1,0 +1,17 @@
+# Arquivo de modelo para 'huawei-udev-rules'
+
+pkgname=huawei-udev-rules
+version=20230819
+revision=1
+short_desc="Lista de regras udev para Huawei."
+maintainer="Fernando Souza <https://tuxslack.github.io/>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/tuxslack/huawei-udev-rules"
+changelog="https://github.com/tuxslack/huawei-udev-rules/releases"
+distfiles="https://github.com/tuxslack/huawei-udev-rules/archive/${version}.tar.gz"
+checksum=9c29778f7021226cf1dae47aaf363f29b6b43300f9271ea4fb6d97013e03c983
+system_groups="adbusers"
+
+do_install() {
+	vinstall 40-huawei.rules 644 usr/lib/udev/rules.d 40-huawei.rules
+}
