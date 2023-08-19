@@ -14,3 +14,13 @@
 ATTR{idVendor}=="12d1", ATTR{idProduct}=="1003", RUN+="usb_modeswitch '/%k'"
 
 # ---------------------------------------------------------------------------------------
+
+
+# Huawei E173s
+#
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1c0b", RUN+="usb_modeswitch '%b/%k'"
+#
+# https://diolinux.com.br/tutoriais/instalar-modem-3g-no-ubuntu-e-derivados.html
+
+
+# ---------------------------------------------------------------------------------------

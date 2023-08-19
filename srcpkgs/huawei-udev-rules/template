@@ -9,7 +9,7 @@ license="GPL-3.0-or-later"
 homepage="https://github.com/tuxslack/huawei-udev-rules"
 changelog="https://github.com/tuxslack/huawei-udev-rules/releases"
 distfiles="https://github.com/tuxslack/huawei-udev-rules/archive/${version}.tar.gz"
-checksum=9c29778f7021226cf1dae47aaf363f29b6b43300f9271ea4fb6d97013e03c983
+checksum=0e655b6cbbf5cbc203b8493ec1d9159340008068bf8637d622bdb2d7fe4480ee
 system_groups="adbusers"
 
 do_install() {
