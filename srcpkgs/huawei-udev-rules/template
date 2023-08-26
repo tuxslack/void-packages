@@ -1,15 +1,15 @@
 # Template file for 'huawei-udev-rules'
 
 pkgname=huawei-udev-rules
-version=20230819
+version=20230826
 revision=1
 short_desc="Lista de regras udev para Huawei."
 maintainer="Fernando Souza <https://tuxslack.github.io/>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/tuxslack/huawei-udev-rules"
 changelog="https://github.com/tuxslack/huawei-udev-rules/releases"
-distfiles="https://github.com/tuxslack/huawei-udev-rules/archive/${version}.tar.gz"
-checksum=0e655b6cbbf5cbc203b8493ec1d9159340008068bf8637d622bdb2d7fe4480ee
+distfiles="https://github.com/tuxslack/huawei-udev-rules/archive/refs/tags/${version}.tar.gz"
+checksum=d2237bd9eeed5ae103a3519bc2721872493c98febbe5013daff25d6e5b30af67
 system_groups="adbusers"
 archs="x86_64"
 hostmakedepends="eudev usb-modeswitch usb-modeswitch-data ModemManager NetworkManager network-manager-applet mobile-broadband-provider-info"
