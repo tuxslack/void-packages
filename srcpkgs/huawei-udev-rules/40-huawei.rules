@@ -1,26 +1,299 @@
-
+#
 # Adiciona suporte a modem USB da Huawei
-
+#
 # https://www.huawei.com/br/
+#
+#
+# Verifica se tem alguns destes programas instalados no Linux: wvdial, gnome-ppp, ppp, NetworkManager ou kppp
+#
+# Dependências: ModemManager, usb-modeswitch, usb-modeswitch-data, network-manager-applet, mobile-broadband-provider-info
+#
+# Precisa ir no NetworkManager criar um cadastro para o modem na opção "Banda Larga Movel"
+#
+# 
+#
+# Interface do usuário do Modem Manager: um excelente aplicativo para gerenciar modems USB
+#
+# Modem Manager gui
+#
+# https://blog.desdelinux.net/pt/modem-manager-gui-excelente-app-gestion-modems-usb/
+# https://sourceforge.net/projects/modem-manager-gui/support
+#
+#
+#
+# =======================================================================================
+#
+# Instalação:
+#
+# Copia esse arquivo "40-huawei.rules" para a pasta /lib/udev/rules.d/ ou /etc/udev/rules.d/
+#
+# cp 40-huawei.rules /lib/udev/rules.d/
+#
+#
+# Por fim, recarregue todas as regras do udev:
+#
+# udevadm control --reload-rules
+#
+#
+# Agora reinicie o seu sistema.
+#
+# reboot
+#
+# Após a reinicialização testa o dispositivo.
+#
+# =======================================================================================
+#
+#
+# Compartilhar a saída dos comandos: dmesg, lsusb e ls /dev/ttyUSB* pode ser útil para diagnosticar o problema com mais precisão.
+#
+#
+# https://www.draisberghof.de/usb_modeswitch/#download
+#
+#
+# https://www.draisberghof.de/usb_modeswitch/usb-modeswitch-2.6.0.tar.bz2
+# https://www.draisberghof.de/usb_modeswitch/usb-modeswitch-data-20191128.tar.bz2
+
 
 # ---------------------------------------------------------------------------------------
 
-# Huawei E156
-
-# lsusb 
+# Huawei E156B - modem 3G
+#
+#
+# UMTS e HSDPA
+#
+#
+# Claro: https://www.claro.com.br/
+#
+#
+# ls -l /dev/ttyUSB*
+# crw-rw---- 1 root dialout 188, 0 ago 24 15:17 /dev/ttyUSB0
+# crw-rw---- 1 root dialout 188, 1 ago 24 15:17 /dev/ttyUSB1
+#
+#
+# lsusb
 #
 # Bus 002 Device 004: ID 12d1:1003 Huawei Technologies Co., Ltd. E220 HSDPA Modem / E230/E270/E870 HSDPA/HSUPA Modem
+#
+# lsusb -vd 12d1:1003
+
 
 ATTR{idVendor}=="12d1", ATTR{idProduct}=="1003", RUN+="usb_modeswitch '/%k'"
 
+
+
+# https://shopee.com.br/Modem-Huawei-E156b-i.328731326.10313087018
+# https://answers.microsoft.com/pt-br/windows/forum/all/modem-huawei-e156b-driver-windows-10/067bcf95-c837-4e4e-afa7-9c061875fdce
+# https://ubuntuforum-br.org/index.php?topic=52848.0
+# https://www.dicas-l.com.br/arquivo/modem_huawei_e156b_e_vivo_zap_no_debian_lenny.php
+
+
 # ---------------------------------------------------------------------------------------
 
+# Huawei E156C
+
+
+
+
+# https://www.clubedohardware.com.br/forums/topic/606079-modem-3g-huawei-e156b-e156c-t%C3%B3pico-central/
+
+# ---------------------------------------------------------------------------------------
+
+
+# Huawei E1750 - modem 3G
+
+
+
+# https://youtu.be/JbcGoa6vX00
+
+
+# ---------------------------------------------------------------------------------------
 
 # Huawei E173s
 #
+#
+# lsusb | grep Huawei
+#
+# Bus 001 Device 003: ID 12d1:1c0b Huawei Technologies Co., Ltd.
+#
+#
 # ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1c0b", RUN+="usb_modeswitch '%b/%k'"
 #
+#
 # https://diolinux.com.br/tutoriais/instalar-modem-3g-no-ubuntu-e-derivados.html
-
+# https://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?t=552
 
 # ---------------------------------------------------------------------------------------
+
+# Huawei E173
+
+
+# lsusb
+#
+# Bus 001 Device 011: ID 12d1:1436 Huawei Technologies Co., Ltd. E173 3G Modem (modem-mode)
+#
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1436", RUN+="usb_modeswitch '%b/%k'"
+# 
+
+
+# lsusb
+#
+# Bus 001 Device 008: ID 12d1:1c05 Huawei Technologies Co., Ltd.
+#
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1c05", RUN+="usb_modeswitch '%b/%k'"
+
+
+
+# https://www.linux.org.ru/forum/general/12476551
+# https://forums.raspberrypi.com/viewtopic.php?t=153900
+# https://ubuntuforum-br.org/index.php?topic=79837.0
+# https://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?t=944
+# https://blog.desdelinux.net/pt/modem-manager-gui-excelente-app-gestion-modems-usb/
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E303C
+
+# lsusb
+#
+# Bus 002 Device 006: ID 12d1:1506 Huawei Technologies Co., Ltd. E398 LTE/UMTS/GSM Modem/Networkcard 
+#
+# ATTR{idVendor}=="12d1", ATTR{idProduct}=="1506", RUN+="usb_modeswitch '/%k'"
+#
+#
+# https://www.vivaolinux.com.br/topico/Modems/Mageia-71-Xfce-e-Modem-3g-Huawei-E303c/
+# https://www.vivaolinux.com.br/topico/Redes-3G/Slackware-+-Huawei-E303C
+# https://www.vivaolinux.com.br/topico/Iniciantes-no-Linux/Modem-3G-18
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E3131
+
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="", RUN+="usb_modeswitch '%b/%k'"
+
+# https://www.vivaolinux.com.br/topico/Redes-3G/Slackware-+-Huawei-E303C
+
+# ---------------------------------------------------------------------------------------
+
+
+# Huawei F156B
+
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="", RUN+="usb_modeswitch '%b/%k'"
+
+# https://www.vivaolinux.com.br/topico/Linux-Mint/Configurar-modem-HUAWEI-no-Linux-Mint-181-Serena
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei EC325
+
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="", RUN+="usb_modeswitch '%b/%k'"
+
+# https://www.vivaolinux.com.br/artigo/Configurando-o-Vivozap-HUAWEI-EC325-no-Linux
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E156C
+
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="", RUN+="usb_modeswitch '%b/%k'"
+
+# https://www.vivaolinux.com.br/topico/Redes-3G/Configurar-o-modem-Huawei-e156c
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei DWM 152
+
+# ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="", RUN+="usb_modeswitch '%b/%k'"
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E1556
+
+# lsusb
+#
+# Bus 001 Device 008: ID 12d1:1001 Huawei Technologies Co., Ltd. E620 USB Modem
+# 
+# ATTR{idVendor}=="12d1", ATTR{idProduct}=="1001", RUN+="usb_modeswitch '/%k'"
+#
+# https://www.vivaolinux.com.br/artigo/Instalando-o-modem-Huawey-E1556-no-GNU-Linux
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E1756
+
+
+# ATTR{idVendor}=="12d1", ATTR{idProduct}=="140c", RUN+="usb_modeswitch '/%k'"
+
+
+# https://www.vivaolinux.com.br/topico/Iniciantes-no-Linux/Modem-3G-6
+# http://www.otubo.net/2009/12/vivo-3g-using-huawei-e1756-on-ubuntu.html
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E1692 / Huawei E173u-2
+
+# ATTR{idVendor}=="12d1", ATTR{idProduct}=="1446", RUN+="usb_modeswitch '/%k'"
+  
+# http://www.otubo.net/2009/12/vivo-3g-using-huawei-e1756-on-ubuntu.html
+# https://ubuntuforums.org/archive/index.php/t-2307515.html
+# https://forums.opensuse.org/t/mobile-broadband-connection-fails/67334
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E3372 - modem 4G (não é reconhecido como modem)
+#
+# O Huawei E3372 está sendo descrito como um E8372.
+#
+# Parece que a maioria dos modems 4G, incluindo o E3372, são projetados principalmente para comunicação 
+# Ethernet sobre USB devido às altas velocidades de 4G que superam as capacidades de conexões dial-up.
+#
+# Huawei E8372h não é um modem dial-up, é um roteador com ponto de acesso wi-fi para até 10 clientes.
+#
+# E3372 é um E8372 sem wi-fi, a maioria dos modems 4G só tem a função ethernet-over-usb devido à velocidade 4G 
+# mais alta do que a discada pode suportar. 25 Mbit/s ou mais ou menos é o limite para ppp diasl-up, que não 
+# é uma velocidade 4G. 
+#
+# Os modems Huawei E3272 e E3372 não fornecem mais uma porta PPP no modo alternativo, apenas uma porta 
+# serial DIAG e uma interface NCM (sabor Ethernet otimizado).
+#
+# É provável que os mais novos sigam esse caminho.
+#
+# Este modem suporta a tecnologia 4G LTE e pode funcionar em várias redes móveis diferentes.
+#
+# lsusb
+#
+# Bus 003 Device 015: ID 12d1:14dc Huawei Technologies Co., Ltd.
+
+
+
+# https://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?f=3&t=2900&p=20265&hilit=huawei#p20265
+# https://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?f=4&t=3036&p=20208&hilit=huawei#p20208
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E3372h-153 - modem 4G
+#
+#
+# lsusb
+#
+# Bus 001 Device 009: ID 12d1:15d6 Huawei Technologies Co., Ltd.
+
+
+# https://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?f=4&t=2987&p=20221&hilit=huawei#p20221
+
+# ---------------------------------------------------------------------------------------
+
+# Huawei E8372
+#
+# Por padrão, o Linux registraria seu Huawei E8372 como um dispositivo de armazenamento em massa e não como um modem.
+#
+# lsusb -d 12d1:1f01
+
+# ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1f01", RUN+="/usr/sbin/usb_modeswitch -v 12d1 -p 1f01 -M '55534243123456780000000000000a11062000000000000100000000000000'" #ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1f01", RUN+="/bin/bash -c 'modprobe option && echo 12d1 14db > /sys/bus/usb-serial/drivers/option1/new_id'"
+
+
+# https://gist.github.com/guseppiguliano/614055d0bc260f5ea305d71439a03790
+# https://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?f=4&t=2746&p=20210&hilit=huawei#p20210
+
+# ---------------------------------------------------------------------------------------
+
+
+

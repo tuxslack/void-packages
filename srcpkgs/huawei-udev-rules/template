@@ -1,4 +1,4 @@
-# Arquivo de modelo para 'huawei-udev-rules'
+# Template file for 'huawei-udev-rules'
 
 pkgname=huawei-udev-rules
 version=20230819
@@ -11,7 +11,17 @@ changelog="https://github.com/tuxslack/huawei-udev-rules/releases"
 distfiles="https://github.com/tuxslack/huawei-udev-rules/archive/${version}.tar.gz"
 checksum=0e655b6cbbf5cbc203b8493ec1d9159340008068bf8637d622bdb2d7fe4480ee
 system_groups="adbusers"
+archs="x86_64"
+hostmakedepends="eudev usb-modeswitch usb-modeswitch-data ModemManager NetworkManager network-manager-applet mobile-broadband-provider-info"
+depends=""
+checkdepends=""
+
 
 do_install() {
 	vinstall 40-huawei.rules 644 usr/lib/udev/rules.d 40-huawei.rules
+}
+
+
+post_install() {
+	echo "Use: udevadm control --reload-rules"
 }
